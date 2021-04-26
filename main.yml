@@ -1,5 +1,18 @@
 ---
 # Author: B M Krishna Reddy Kolli
+# extra_vars input example
+# ---
+#Tasks:
+#- ApplicationName: sample
+#  Type: MaintanenceMode | PreTask | Patch | PostTask | Validation
+#  Limit: svr12,svr34,svr56
+#  StartTime: '00:15'
+#  EndTime: '00:45'
+#  Action: Place in MM | Stop Service | Install Patch | Start Service | App Check
+#  Attributes: NULL | servicenames separated by comma
+#  Wait: true | false
+#  ChangeNo: ch0081762
+
 - hosts: localhost
   connection: local
   gather_facts: false
@@ -16,5 +29,6 @@
         task_action: "{{ item.Action }}"
         action_attributes: "{{ item.Attributes }}"
         task_wait: "{{ item.Wait }}"
+        change_no: "{{ item.ChangeNo }}"
       with_items: "{{ Tasks }}"
       ignore_errors: true

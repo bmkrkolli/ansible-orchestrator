@@ -1,4 +1,56 @@
 ---
 # Validate Inputs and call respective roles
+#- checks for maintenance mode
+#   - time check
+#   - inventory check
+#   - change no check and status check on ticketing tool 
+#- if all 3 checks passed then call maintenance mode role and feed inputs 
+
+#- checks for pretask
+#   - time check
+#   - wait check
+#   - inventory check
+#   - maintanence mode check
+#   - service name input and existing check
+#- if all 5 checks passed then call pretask role and feed inputs 
+
+#- checks for patch
+#   - time check
+#   - wait check
+#   - inventory check
+#   - maintanence mode check
+#   - service status check
+#   - backup check if needed
+#   - others checks if needed
+#- if all 7 checks passed then call patching role and feed inputs 
+
+#- checks for posttask
+#   - time check
+#   - wait check
+#   - inventory check
+#   - maintanence mode check
+#   - patch check or uptime check
+#   - service name input and existing check
+#- if all 6 checks passed then call posttask role and feed inputs 
+
+#- checks for validation
+#   - time check
+#   - wait check
+#   - inventory check
+#   - maintanence mode check
+#   - service status check
+#- if all 5 checks passed then call validation role and feed inputs 
+
+#- checks for removing from maintanence mode
+#   - time check
+#   - wait check
+#   - inventory check
+#   - maintanence mode check
+#   - Patch check
+#   - app check
+#- if all 6 checks passed then remove servers from maintenance mode 
+
 - debug: 
-    msg: "{{ app_name }} , {{ task_type }} , {{ affected_hosts }} , {{ start_time }} , {{ end_time }} , {{ task_action }} , {{ action_attributes }} , {{ task_wait }}"
+    msg: "{{ app_name }} , {{ task_type }} , {{ affected_hosts }} , {{ start_time }} , {{ end_time }} , {{ task_action }} , {{ action_attributes }} , {{ task_wait }} , {{ change_no }}"
+
+
