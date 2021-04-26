@@ -49,9 +49,12 @@
 #   - Patch check
 #   - app check
 #- if all 6 checks passed then remove servers from maintenance mode 
-
+- debug: 
+    msg: "{{ app_name }} , {{ task_type }} , {{ affected_hosts }} , {{ start_time }} , {{ end_time }} , {{ task_action }} , {{ action_attributes }} , {{ task_wait }} , {{ change_no }}"
+  when: task_type == "MM"
 - debug: 
     msg: "{{ app_name }} , {{ task_type }} , {{ affected_hosts }} , {{ start_time }} , {{ end_time }} , {{ task_action }} , {{ action_attributes }} , {{ task_wait }} , {{ change_no }}"
   when: task_type == "PreTask"
-
-
+- debug: 
+    msg: "{{ app_name }} , {{ task_type }} , {{ affected_hosts }} , {{ start_time }} , {{ end_time }} , {{ task_action }} , {{ action_attributes }} , {{ task_wait }} , {{ change_no }}"
+  when: task_type == "PostTask"
