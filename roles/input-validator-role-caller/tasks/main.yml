@@ -52,5 +52,6 @@
 
 - debug: 
     msg: "{{ app_name }} , {{ task_type }} , {{ affected_hosts }} , {{ start_time }} , {{ end_time }} , {{ task_action }} , {{ action_attributes }} , {{ task_wait }} , {{ change_no }}"
+  when: task_type == "PreTask"
 
 
