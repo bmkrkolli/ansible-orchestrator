@@ -1,0 +1,10 @@
+---
+app_name: "{{ item.ApplicationName }}"
+task_type: "{{ item.Type }}"
+affected_hosts: "{{ item.Limit }}"
+start_time: "{{ item.StartTime }}"
+end_time: "{{ item.EndTime }}"
+task_action: "{{ item.Action }}"
+action_attributes: "{{ item.Attributes }}"
+task_wait: "{{ item.Wait }}"
+#"{{ item.ApplicationName }} , {{ item.Type }} , {{ item.Limit }} , {{ item.StartTime }} , {{ item.EndTime }} , {{ item.Action }} , {{ item.Attributes }} , {{ item.Wait }}"

@@ -1,0 +1,37 @@
+---
+# Linux Zabbix Agent Service Start
+- name: 'Start Zabbix Agent Service'
+  service:
+    name: zabbix-agent
+    enabled: yes
+    state: started
+  become: yes
+  become_method: sudo
+  register: service_output
+  when: os_type != "Suse"
+  ignore_errors: true
+
+# Set Return values in job_msg for feedback
+- name: Set auto recovered in job_msg for feedback
+  set_fact:
+    job_msg: >-
+      Auto-Recovered, Zabbix Agent Service is already Running. 
+      Service State is {{ service_output.state }}
+  when: not service_output.changed
+  ignore_errors: true
+
+- name: Set resolved in job_msg for feedback
+  set_fact:
+    job_msg: >-
+      Resolved, Zabbix Agent Service is Started Successfully. 
+      Service State is {{ service_output.state }}
+  when: service_output.changed
+  ignore_errors: true
+
+- name: Set failed in job_msg for feedback
+  set_fact:
+    job_msg: >-
+      Failed, Error in Starting Zabbix Agent Service. 
+      {{ service_output | to_yaml }}
+  when: service_output.failed
+  ignore_errors: true

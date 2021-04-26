@@ -1,0 +1,20 @@
+---
+# Author: B M Krishna Reddy Kolli
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: Pass inputs to validator taskwise
+      include_role:
+        name: input-validator-role-caller
+      vars:
+        app_name: "{{ item.ApplicationName }}"
+        task_type: "{{ item.Type }}"
+        affected_hosts: "{{ item.Limit }}"
+        start_time: "{{ item.StartTime }}"
+        end_time: "{{ item.EndTime }}"
+        task_action: "{{ item.Action }}"
+        action_attributes: "{{ item.Attributes }}"
+        task_wait: "{{ item.Wait }}"
+      with_items: "{{ Tasks }}"
+      ignore_errors: true
